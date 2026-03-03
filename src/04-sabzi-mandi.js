@@ -49,20 +49,51 @@
  */
 export function addToCart(cart, item) {
   // Your code here
+
+  if (typeof cart != "object" || cart === null) return -1;
+  if (item.length > 0) {
+    cart.push(item);
+  }
+  return cart.length;
 }
 
 export function addUrgentItem(cart, item) {
-  // Your code here
+  
+  if (!Array.isArray(cart)) {
+    return [];
+  }
+
+  if (typeof item !== 'string' || item.length === 0) {
+    return cart;
+  }
+
+  cart.unshift(item);
+  return cart;
 }
 
 export function removeLastItem(cart) {
   // Your code here
+  if (typeof cart != "object" || cart == null) return undefined;
+  return cart.pop();
 }
 
 export function isInCart(cart, item) {
   // Your code here
+  if (cart == null) {
+    return false;
+  }
+  return cart.includes(item);
 }
 
 export function mergeCarts(cart1, cart2) {
-  // Your code here
+  // treat any non-array argument as an empty cart
+  if (!Array.isArray(cart1)) {
+    cart1 = [];
+  }
+  if (!Array.isArray(cart2)) {
+    cart2 = [];
+  }
+
+  // concat merges two valid arrays
+  return cart1.concat(cart2);
 }
